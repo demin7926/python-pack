@@ -1,0 +1,21 @@
+version: "3"
+services:
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+    node1:
+        image: python:celery-test
+        volumes:
+            - ./src:/app/src
+        command: bash -c "export PYTHONPATH=/app/src/worker1; celery worker -A task1 -Q Queue1 --loglevel=info"
+    node2:
+        image: python:celery-test
+        volumes:
+            - ./src:/app/src
+        command: bash -c "export PYTHONPATH=/app/src/worker2; celery worker -A task2 -Q Queue2 --loglevel=info"
+    node3:
+        image: python:celery-test
+        volumes:
+            - ./src:/app/src
+
