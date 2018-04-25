@@ -3,7 +3,7 @@
 import os, subprocess
 from celery import Celery
 
-app = Celery('DTQDemo', backend='redis://redis', broker='redis://redis')
+app = Celery('DTQDemo', broker='amqp://rabbitmq')
 
 @app.task(name="mytask2")
 def task2_func():

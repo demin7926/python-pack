@@ -2,7 +2,7 @@
 
 from celery import Celery
 
-app = Celery('DTQDemo', backend='redis://redis', broker='redis://redis')
+app = Celery('DTQDemo', broker='amqp://rabbitmq')
 
 # inspect worker | task
 from celery.task.control import inspect

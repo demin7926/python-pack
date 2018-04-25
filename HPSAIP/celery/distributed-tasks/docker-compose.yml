@@ -1,14 +1,14 @@
 version: "3"
 services:
-    redis:
-        image: redis:latest
+    rabbitmq:
+        image: rabbitmq:latest
         ports:
             - 6379:6379
     node1:
         image: python:celery-test
         volumes:
             - ./src:/app/src
-        command: bash -c "export PYTHONPATH=/app/src/worker1; celery worker -A task1 -Q Queue1 --loglevel=info"
+        command: bash -c "python /app/worker1/task1.py"
     node2:
         image: python:celery-test
         volumes:
