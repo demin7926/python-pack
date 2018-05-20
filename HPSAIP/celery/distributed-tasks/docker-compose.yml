@@ -8,12 +8,14 @@ services:
         image: python:celery-test
         volumes:
             - ./src:/app/src
-        command: bash -c "python /app/worker1/task1.py"
+        #command: bash -c "python /app/src/worker1/task1.py"
+        command: bash -c "python -V"
     node2:
         image: python:celery-test
         volumes:
             - ./src:/app/src
-        command: bash -c "export PYTHONPATH=/app/src/worker2; celery worker -A task2 -Q Queue2 --loglevel=info"
+        #command: bash -c "export PYTHONPATH=/app/src/worker2; celery worker -A task2 -Q BroadcastTask --loglevel=info"
+        command: bash -c "python -V"
     node3:
         image: python:celery-test
         volumes:
